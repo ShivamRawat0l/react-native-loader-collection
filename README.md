@@ -4,7 +4,12 @@
 ## React-Native-Loader-Collection
 
 
+
 Contains collections of loading animations using react native reanimated. 
+
+## Demo 
+
+![Demo](https://github.com/ShivamRawat0l/react-native-loader-collection/blob/main/demo/player_GJBbstqXvs.gif "Demo Gif")
 
 ## Getting started
 
