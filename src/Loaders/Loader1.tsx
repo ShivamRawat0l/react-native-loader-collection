@@ -108,8 +108,8 @@ const styles = StyleSheet.create({
   viewStyle: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 50,
-    height: 50,
+    width: 100,
+    height: 100,
   },
   dotStyle: {
     position: 'absolute',
