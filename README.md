@@ -13,11 +13,11 @@ Contains collections of loading animations using react native reanimated v2.
 
 ## Getting started
 
-`$ npm install react-native-loading-collection --save`
+`$ npm install react-native-loader-collection --save`
 
 or
 
-`$ yarn add react-native-loading-collection`
+`$ yarn add react-native-loader-collection`
 
 ## Requirements
 
