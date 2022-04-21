@@ -15,7 +15,7 @@ jobs:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
       - run: yarn
-      - run: npm version patch
+      - run: npm version minor
       - run: yarn run prepare
       - run: yarn publish
         env:
