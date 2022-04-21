@@ -14,8 +14,8 @@ jobs:
       - run: npm version minor -m "v%s"
       - run: VERSION=$(node -p "require('./package.json').version")
       - run: git tag ${VERSION}
-      - run: git push "https://ShivamRawat0l:${{ secrets.ACCESS_TOKEN }}@github.com/react-native-loader-collection.git" --follow-tags
-      - run: git push "https://ShivamRawat0l:${{ secrets.ACCESS_TOKEN }}@github.com/react-native-loader-collection.git" --tags
+      - run: git push "https://${{ secrets.ACCESS_TOKEN }}@github.com/ShivamRawat0l/react-native-loader-collection.git" --follow-tags
+      - run: git push "https://${{ secrets.ACCESS_TOKEN }}@github.com/ShivamRawat0l/react-native-loader-collection.git" --tags
       - uses: actions/setup-node@v3
         with:
           node-version: '16.x'
