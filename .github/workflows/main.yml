@@ -9,13 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: 'Automated Version Bump'
-        id: version-bump
-        uses: 'phips28/gh-action-bump-version@master'
-        with:
-          tag-prefix: 'v'
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      - run: git config user.email "ShivamRawat0l@users.noreply.github.com"
+      - run: git config user.name "ShivamRawat0l"
+      - run: npm version minor -m "v%s"
+      - run: VERSION=$(node -p "require('./package.json').version")
+      - run: git tag ${VERSION}
+      - run: git push "https://ShivamRawat0l:${{ secrets.ACCESS_TOKEN }}@github.com/react-native-loader-collection.git" --follow-tags
+      - run: git push "https://ShivamRawat0l:${{ secrets.ACCESS_TOKEN }}@github.com/react-native-loader-collection.git" --tags
       - uses: actions/setup-node@v3
         with:
           node-version: '16.x'
