@@ -53,4 +53,6 @@ In case of error please raise a [issue](https://github.com/ShivamRawat0l/react-n
 
 ## Goals
 
-Adding more animations to the collections using react-native-svg
+Adding more animations to the collections using react-native-svg.
+
+
