@@ -50,9 +50,14 @@ Mention fix/feature/refactor in the PR.
 ## Errors
 In case of error please raise a [issue](https://github.com/ShivamRawat0l/react-native-kustomer-sdk-v2/issues).
 
+## Suggestions
+
+Kindly share the link to the loader animation which you would like to be a part of this collection.
+
 
 ## Goals
 
 Adding more animations to the collections using react-native-svg.
+
 
 
