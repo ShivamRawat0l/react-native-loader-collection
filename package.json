@@ -66,12 +66,14 @@
     "react-native-builder-bob": "^0.18.0",
     "react-native-reanimated": "2.4.1",
     "release-it": "^14.2.2",
-    "typescript": "^4.1.3"
+    "typescript": "^4.1.3",
+    "react-native-svg": "^12.3.0"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-reanimated": "2.4.1"
+    "react-native-reanimated": "2.4.1",
+    "react-native-svg": "^12.3.0"
   },
   "jest": {
     "preset": "react-native",
@@ -146,4 +148,5 @@
       ]
     ]
   }
+
 }
