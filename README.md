@@ -5,9 +5,9 @@
 
 
 
-Contains collections of loading animations using react native reanimated. 
+Contains collections of loading animations using react native reanimated v2.
 
-## Demo 
+## Demo
 
 ![Demo](https://github.com/ShivamRawat0l/react-native-loader-collection/blob/main/demo/player_GJBbstqXvs.gif "Demo Gif")
 
@@ -21,7 +21,7 @@ or
 
 ## Requirements
 
- -  [React Native Reanimated.](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation) 
+ -  [React Native Reanimated.](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation)
 
 ## Usage
 
@@ -51,3 +51,6 @@ Mention fix/feature/refactor in the PR.
 In case of error please raise a [issue](https://github.com/ShivamRawat0l/react-native-kustomer-sdk-v2/issues).
 
 
+## Goals
+
+Adding more animations to the collections using react-native-svg
