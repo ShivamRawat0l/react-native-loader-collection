@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import Animated, {
   runOnJS,
@@ -55,70 +55,83 @@ const Loader3 = ({ dotStyle, viewStyle }: MainProps) => {
 
   const [selected, setSelected] = useState(1);
 
-  const animate = (
-    dotX: SharedValue<number>,
-    dotY: SharedValue<number>,
-    height: SharedValue<number>,
-    width: SharedValue<number>
-  ) => {
-    `worklet`;
-    let newPositionX: number, newPositionY: number;
-    if (dotX.value === 26) {
-      if (dotY.value === 26) {
-        newPositionX = 0;
-        newPositionY = 26;
+  const selectNext = useCallback(() => {
+    setSelected((currentValue) => {
+      if (currentValue === 3) {
+        return 1;
       } else {
-        newPositionY = 26;
-        newPositionX = 26;
+        return currentValue + 1;
       }
-    } else {
-      if (dotY.value === 26) {
-        newPositionX = 0;
-        newPositionY = 0;
+    });
+  }, []);
+
+  const animate = useCallback(
+    (
+      dotX: SharedValue<number>,
+      dotY: SharedValue<number>,
+      height: SharedValue<number>,
+      width: SharedValue<number>
+    ) => {
+      `worklet`;
+      let newPositionX: number, newPositionY: number;
+      if (dotX.value === 26) {
+        if (dotY.value === 26) {
+          newPositionX = 0;
+          newPositionY = 26;
+        } else {
+          newPositionY = 26;
+          newPositionX = 26;
+        }
       } else {
-        newPositionY = 0;
-        newPositionX = 26;
+        if (dotY.value === 26) {
+          newPositionX = 0;
+          newPositionY = 0;
+        } else {
+          newPositionY = 0;
+          newPositionX = 26;
+        }
       }
-    }
-    if (newPositionX !== dotX.value) {
-      if (newPositionX === 0) {
-        dotX.value = withTiming(13, { duration: 100 }, () => {
-          width.value = withSpring(40, {}, () => {
-            runOnJS(selectNext)();
-            width.value = withSpring(20);
-            dotX.value = withSpring(newPositionX);
+      if (newPositionX !== dotX.value) {
+        if (newPositionX === 0) {
+          dotX.value = withTiming(13, { duration: 100 }, () => {
+            width.value = withSpring(40, {}, () => {
+              runOnJS(selectNext)();
+              width.value = withSpring(20);
+              dotX.value = withSpring(newPositionX);
+            });
           });
-        });
-      } else {
-        dotX.value = withTiming(newPositionX / 2, { duration: 100 }, () => {
-          width.value = withSpring(40, {}, () => {
-            runOnJS(selectNext)();
-            width.value = withSpring(20);
-            dotX.value = withSpring(newPositionX);
+        } else {
+          dotX.value = withTiming(newPositionX / 2, { duration: 100 }, () => {
+            width.value = withSpring(40, {}, () => {
+              runOnJS(selectNext)();
+              width.value = withSpring(20);
+              dotX.value = withSpring(newPositionX);
+            });
           });
-        });
+        }
       }
-    }
-    if (newPositionY !== dotY.value) {
-      if (newPositionY === 0) {
-        dotY.value = withTiming(13, { duration: 100 }, () => {
-          height.value = withSpring(40, {}, () => {
-            runOnJS(selectNext)();
-            height.value = withSpring(20);
-            dotY.value = withSpring(newPositionY);
+      if (newPositionY !== dotY.value) {
+        if (newPositionY === 0) {
+          dotY.value = withTiming(13, { duration: 100 }, () => {
+            height.value = withSpring(40, {}, () => {
+              runOnJS(selectNext)();
+              height.value = withSpring(20);
+              dotY.value = withSpring(newPositionY);
+            });
           });
-        });
-      } else {
-        dotY.value = withTiming(newPositionY / 2, { duration: 100 }, () => {
-          height.value = withSpring(40, {}, () => {
-            runOnJS(selectNext)();
-            height.value = withSpring(20);
-            dotY.value = withSpring(newPositionY);
+        } else {
+          dotY.value = withTiming(newPositionY / 2, { duration: 100 }, () => {
+            height.value = withSpring(40, {}, () => {
+              runOnJS(selectNext)();
+              height.value = withSpring(20);
+              dotY.value = withSpring(newPositionY);
+            });
           });
-        });
+        }
       }
-    }
-  };
+    },
+    [selectNext]
+  );
 
   useEffect(() => {
     if (selected === 1) {
@@ -131,15 +144,6 @@ const Loader3 = ({ dotStyle, viewStyle }: MainProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected, animate]);
 
-  function selectNext() {
-    setSelected((currentValue) => {
-      if (currentValue === 3) {
-        return 1;
-      } else {
-        return currentValue + 1;
-      }
-    });
-  }
   return (
     <>
       {/*//@ts-ignore*/}
