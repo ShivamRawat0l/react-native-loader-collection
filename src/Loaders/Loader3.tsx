@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import Animated, {
   runOnJS,
+  runOnUI,
   SharedValue,
   useAnimatedStyle,
   useSharedValue,
@@ -60,6 +61,7 @@ const Loader3 = ({ dotStyle, viewStyle }: MainProps) => {
     height: SharedValue<number>,
     width: SharedValue<number>
   ) => {
+    `worklet`;
     let newPositionX: number, newPositionY: number;
     if (dotX.value === 26) {
       if (dotY.value === 26) {
@@ -120,11 +122,11 @@ const Loader3 = ({ dotStyle, viewStyle }: MainProps) => {
 
   useEffect(() => {
     if (selected === 1) {
-      animate(dot1X, dot1Y, height1, width1);
+      runOnUI(animate)(dot1X, dot1Y, height1, width1);
     } else if (selected === 2) {
-      animate(dot2X, dot2Y, height2, width2);
+      runOnUI(animate)(dot2X, dot2Y, height2, width2);
     } else if (selected === 3) {
-      animate(dot3X, dot3Y, height3, width3);
+      runOnUI(animate)(dot3X, dot3Y, height3, width3);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected, animate]);

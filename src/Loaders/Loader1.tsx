@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { StyleSheet, ViewStyle } from 'react-native';
 import Animated, {
   interpolate,
+  runOnUI,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
@@ -33,7 +34,8 @@ const Dot = ({ degreeX, degreeY, dotStyle, duration }: Props) => {
       ),
       -1
     );
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const animatedStyles = useAnimatedStyle(() => {
     return {
       transform: [
@@ -48,7 +50,8 @@ const Dot = ({ degreeX, degreeY, dotStyle, duration }: Props) => {
 
 const Loader1 = ({ dotStyle, viewStyle, duration = 1000 }: MainProps) => {
   const rotate = useSharedValue(0);
-  useEffect(() => {
+  function rotateView() {
+    `worklet`;
     rotate.value = withRepeat(
       withSequence(
         withDelay(duration, withTiming(1, { duration: duration })),
@@ -56,6 +59,9 @@ const Loader1 = ({ dotStyle, viewStyle, duration = 1000 }: MainProps) => {
       ),
       -1
     );
+  }
+  useEffect(() => {
+    runOnUI(rotateView)();
   });
   const animatedStyles = useAnimatedStyle(() => {
     const spin = interpolate(rotate.value, [0, 1], [0, 180]);

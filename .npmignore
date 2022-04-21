@@ -1,0 +1,14 @@
+demo/
+example/
+tsconfig.json
+src
+
+# Logs
+*.log
+npm-debug.log
+
+# Dependency directory
+node_modules
+
+# Runtime data
+tmp

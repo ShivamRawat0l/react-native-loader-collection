@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, {
   interpolate,
+  runOnUI,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
@@ -29,7 +30,8 @@ const Dot: React.FunctionComponent<Props> = ({
   offset,
 }) => {
   const movement = useSharedValue(0);
-  useEffect(() => {
+  function moveDots() {
+    `worklet`;
     movement.value = withRepeat(
       withSequence(
         withDelay(offset, withSpring(1)),
@@ -39,7 +41,10 @@ const Dot: React.FunctionComponent<Props> = ({
       ),
       -1
     );
+  }
 
+  useEffect(() => {
+    runOnUI(moveDots)();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
