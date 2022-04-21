@@ -1,0 +1,4 @@
+node_modules/
+
+# generated files by bob
+lib/
