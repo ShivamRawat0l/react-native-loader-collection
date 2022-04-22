@@ -147,7 +147,7 @@ const Loader3 = ({ dotStyle, viewStyle }: MainProps) => {
   return (
     <>
       {/*//@ts-ignore*/}
-      <View style={viewStyle ? viewStyle : styles.viewStyle}>
+      <View style={[styles.viewStyle, viewStyle]}>
         <Dot
           dotStyle={dotStyle ? dotStyle : styles.dotStyle}
           positionX={dot1X}
