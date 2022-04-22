@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { StyleSheet, ViewStyle } from 'react-native';
 import Animated, {
   interpolate,
@@ -50,7 +50,8 @@ const Dot = ({ degreeX, degreeY, dotStyle, duration }: Props) => {
 
 const Loader1 = ({ dotStyle, viewStyle, duration = 1000 }: MainProps) => {
   const rotate = useSharedValue(0);
-  function rotateView() {
+
+  const rotateView = useCallback(() => {
     `worklet`;
     rotate.value = withRepeat(
       withSequence(
@@ -59,7 +60,9 @@ const Loader1 = ({ dotStyle, viewStyle, duration = 1000 }: MainProps) => {
       ),
       -1
     );
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     runOnUI(rotateView)();
   });

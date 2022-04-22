@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, {
   interpolate,
@@ -30,18 +30,18 @@ const Dot: React.FunctionComponent<Props> = ({
   offset,
 }) => {
   const movement = useSharedValue(0);
-  function moveDots() {
+
+  const moveDots = useCallback(() => {
     `worklet`;
     movement.value = withRepeat(
       withSequence(
-        withDelay(offset, withSpring(1)),
-        withTiming(1, { duration: duration - offset }),
-        withDelay(offset, withSpring(0)),
-        withTiming(0, { duration: duration - offset })
+        withDelay(duration - offset, withTiming(1, { duration: offset })),
+        withDelay(duration - offset, withTiming(0, { duration: offset }))
       ),
       -1
     );
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     runOnUI(moveDots)();
@@ -69,22 +69,22 @@ const Loader2: React.FC<MainProps> = ({
       {/*//@ts-ignore*/}
       <View style={viewStyle ? viewStyle : styles.viewStyle}>
         <Dot
-          offset={100}
-          dotStyle={dotStyle ? dotStyle : styles.dotStyle}
-          duration={duration}
-        />
-        <Dot
           offset={200}
           dotStyle={dotStyle ? dotStyle : styles.dotStyle}
           duration={duration}
         />
         <Dot
-          offset={300}
+          offset={400}
           dotStyle={dotStyle ? dotStyle : styles.dotStyle}
           duration={duration}
         />
         <Dot
-          offset={400}
+          offset={600}
+          dotStyle={dotStyle ? dotStyle : styles.dotStyle}
+          duration={duration}
+        />
+        <Dot
+          offset={800}
           dotStyle={dotStyle ? dotStyle : styles.dotStyle}
           duration={duration}
         />
@@ -98,6 +98,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
+    height: 100,
+    width: 100,
   },
   dotStyle: {
     backgroundColor: '#F65158',
