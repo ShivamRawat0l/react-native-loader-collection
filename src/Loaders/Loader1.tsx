@@ -75,9 +75,7 @@ const Loader1 = ({ dotStyle, viewStyle, duration = 1000 }: MainProps) => {
   return (
     <>
       {/*//@ts-ignore*/}
-      <Animated.View
-        style={[animatedStyles, viewStyle ? viewStyle : styles.viewStyle]}
-      >
+      <Animated.View style={[animatedStyles, styles.viewStyle, viewStyle]}>
         <Dot
           degreeX={1}
           degreeY={-1}

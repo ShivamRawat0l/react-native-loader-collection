@@ -8,7 +8,6 @@ import Animated, {
   withDelay,
   withRepeat,
   withSequence,
-  withSpring,
   withTiming,
 } from 'react-native-reanimated';
 
@@ -67,7 +66,7 @@ const Loader2: React.FC<MainProps> = ({
   return (
     <>
       {/*//@ts-ignore*/}
-      <View style={viewStyle ? viewStyle : styles.viewStyle}>
+      <View style={[styles.viewStyle, viewStyle]}>
         <Dot
           offset={200}
           dotStyle={dotStyle ? dotStyle : styles.dotStyle}
