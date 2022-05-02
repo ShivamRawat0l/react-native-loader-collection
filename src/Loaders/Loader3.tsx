@@ -15,7 +15,7 @@ type Props = {
   positionY: SharedValue<number>;
   height: SharedValue<number>;
   width: SharedValue<number>;
-  dotStyle: ViewStyle;
+  dotStyles: ViewStyle[];
 };
 
 type MainProps = {
@@ -23,7 +23,7 @@ type MainProps = {
   viewStyle?: ViewStyle;
 };
 
-const Dot = ({ positionX, positionY, dotStyle, height, width }: Props) => {
+const Dot = ({ positionX, positionY, dotStyles, height, width }: Props) => {
   const animatedStyles = useAnimatedStyle(() => {
     return {
       height: height.value,
@@ -35,10 +35,10 @@ const Dot = ({ positionX, positionY, dotStyle, height, width }: Props) => {
     };
   });
   //@ts-ignore
-  return <Animated.View style={[animatedStyles, dotStyle]} />;
+  return <Animated.View style={[animatedStyles, ...dotStyles]} />;
 };
 
-const Loader3 = ({ dotStyle, viewStyle }: MainProps) => {
+const Loader3 = ({ viewStyle }: MainProps) => {
   const dot1X = useSharedValue(0);
   const dot1Y = useSharedValue(0);
   const height1 = useSharedValue(20);
@@ -149,21 +149,21 @@ const Loader3 = ({ dotStyle, viewStyle }: MainProps) => {
       {/*//@ts-ignore*/}
       <View style={[styles.viewStyle, viewStyle]}>
         <Dot
-          dotStyle={dotStyle ? dotStyle : styles.dotStyle}
+          dotStyles={[styles.dotStyle]}
           positionX={dot1X}
           positionY={dot1Y}
           height={height1}
           width={width1}
         />
         <Dot
-          dotStyle={dotStyle ? dotStyle : styles.dotStyle}
+          dotStyles={[styles.dotStyle]}
           positionX={dot2X}
           positionY={dot2Y}
           height={height2}
           width={width2}
         />
         <Dot
-          dotStyle={dotStyle ? dotStyle : styles.dotStyle}
+          dotStyles={[styles.dotStyle]}
           positionX={dot3X}
           positionY={dot3Y}
           height={height3}
