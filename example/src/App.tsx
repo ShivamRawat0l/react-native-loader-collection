@@ -2,31 +2,18 @@ import * as React from 'react';
 
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { Loader1, Loader2, Loader3 } from 'react-native-loader-collection';
+import { Canvas, Circle, Group } from '@shopify/react-native-skia';
+import Skia from './Components/Skia';
+import SimpleLoaders from './Components/SimpleLoaders';
 
 export default function App() {
+  const width = 256;
+  const height = 256;
+  const r = 215;
   return (
-    <View style={styles.container}>
-      <Text style={styles.heading}>react-native-loader-collection</Text>
-      <ScrollView>
-        <Text style={styles.text}>Loader 1</Text>
-
-        <View style={styles.loaderContainer}>
-          <Loader1 />
-        </View>
-
-        <Text style={styles.text}>Loader 2</Text>
-
-        <View style={styles.loaderContainer}>
-          <Loader2 />
-        </View>
-
-        <Text style={styles.text}>Loader 3</Text>
-
-        <View style={styles.loaderContainer}>
-          <Loader3 />
-        </View>
-      </ScrollView>
-    </View>
+    <React.StrictMode>
+      <SimpleLoaders />
+    </React.StrictMode>
   );
 }
 

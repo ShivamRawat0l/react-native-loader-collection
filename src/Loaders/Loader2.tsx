@@ -14,19 +14,24 @@ import Animated, {
 type Props = {
   offset: number;
   duration: number;
-  dotStyle: any;
+  dotStyles: any[];
+  heightProp: number;
 };
 
 type MainProps = {
-  dotStyle?: any;
   viewStyle?: any;
   duration?: number;
+  padding?: number;
+  size?: number;
+  color?: string;
+  height?: number;
 };
 
 const Dot: React.FunctionComponent<Props> = ({
-  dotStyle,
+  dotStyles,
   duration,
   offset,
+  heightProp,
 }) => {
   const movement = useSharedValue(0);
 
@@ -48,43 +53,90 @@ const Dot: React.FunctionComponent<Props> = ({
   }, []);
 
   const animatedStyles = useAnimatedStyle(() => {
-    const height = interpolate(movement.value, [0, 0.5, 1], [10, 20, 10]);
+    const height = interpolate(
+      movement.value,
+      [0, 0.5, 1],
+      [10, heightProp / 2, 10]
+    );
     return {
-      transform: [{ translateY: movement.value * 40 }],
+      transform: [{ translateY: movement.value * heightProp }],
       height: height,
     };
   });
   //@ts-ignore
-  return <Animated.View style={[animatedStyles, dotStyle]} />;
+  return <Animated.View style={[animatedStyles, ...dotStyles]} />;
 };
 
 const Loader2: React.FC<MainProps> = ({
-  dotStyle,
   viewStyle,
   duration = 1000,
+  padding = 10,
+  size = 8,
+  color = '#F65158',
+  height = 40,
 }) => {
   return (
     <>
       {/*//@ts-ignore*/}
       <View style={[styles.viewStyle, viewStyle]}>
         <Dot
-          offset={200}
-          dotStyle={dotStyle ? dotStyle : styles.dotStyle}
+          offset={duration / 5}
+          dotStyles={[
+            styles.dotStyle,
+            {
+              backgroundColor: color,
+              width: size,
+              height: size,
+              borderRadius: size,
+              marginRight: padding,
+            },
+          ]}
+          heightProp={height}
           duration={duration}
         />
         <Dot
-          offset={400}
-          dotStyle={dotStyle ? dotStyle : styles.dotStyle}
+          offset={2 * (duration / 5)}
+          dotStyles={[
+            styles.dotStyle,
+            {
+              backgroundColor: color,
+              width: size,
+              height: size,
+              borderRadius: size,
+              marginRight: padding,
+            },
+          ]}
+          heightProp={height}
           duration={duration}
         />
         <Dot
-          offset={600}
-          dotStyle={dotStyle ? dotStyle : styles.dotStyle}
+          offset={3 * (duration / 5)}
+          dotStyles={[
+            styles.dotStyle,
+            {
+              backgroundColor: color,
+              width: size,
+              height: size,
+              borderRadius: size,
+              marginRight: padding,
+            },
+          ]}
+          heightProp={height}
           duration={duration}
         />
         <Dot
-          offset={800}
-          dotStyle={dotStyle ? dotStyle : styles.dotStyle}
+          offset={4 * (duration / 5)}
+          dotStyles={[
+            styles.dotStyle,
+            {
+              backgroundColor: color,
+              width: size,
+              height: size,
+              borderRadius: size,
+              marginRight: padding,
+            },
+          ]}
+          heightProp={height}
           duration={duration}
         />
       </View>
@@ -97,8 +149,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    height: 100,
-    width: 100,
+    flex: 1,
   },
   dotStyle: {
     backgroundColor: '#F65158',

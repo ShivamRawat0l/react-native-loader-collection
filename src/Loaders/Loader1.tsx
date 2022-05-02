@@ -15,16 +15,19 @@ type Props = {
   degreeX: number;
   degreeY: number;
   duration: number;
-  dotStyle: ViewStyle;
+  dotStyles: ViewStyle[];
+  padding: number;
 };
 
 type MainProps = {
-  dotStyle?: ViewStyle;
   viewStyle?: ViewStyle;
   duration?: number;
+  color?: string;
+  size?: number;
+  padding?: number;
 };
 
-const Dot = ({ degreeX, degreeY, dotStyle, duration }: Props) => {
+const Dot = ({ degreeX, degreeY, dotStyles, duration, padding }: Props) => {
   const offset = useSharedValue(0);
   useEffect(() => {
     offset.value = withRepeat(
@@ -39,16 +42,22 @@ const Dot = ({ degreeX, degreeY, dotStyle, duration }: Props) => {
   const animatedStyles = useAnimatedStyle(() => {
     return {
       transform: [
-        { translateX: offset.value * 9 * degreeX },
-        { translateY: offset.value * 9 * degreeY },
+        { translateX: offset.value * padding * degreeX },
+        { translateY: offset.value * padding * degreeY },
       ],
     };
   });
   //@ts-ignore
-  return <Animated.View style={[animatedStyles, dotStyle]} />;
+  return <Animated.View style={[animatedStyles, ...dotStyles]} />;
 };
 
-const Loader1 = ({ dotStyle, viewStyle, duration = 1000 }: MainProps) => {
+const Loader1 = ({
+  viewStyle,
+  duration = 1000,
+  color = '#F65158',
+  size = 8,
+  padding = 9,
+}: MainProps) => {
   const rotate = useSharedValue(0);
 
   const rotateView = useCallback(() => {
@@ -79,25 +88,61 @@ const Loader1 = ({ dotStyle, viewStyle, duration = 1000 }: MainProps) => {
         <Dot
           degreeX={1}
           degreeY={-1}
-          dotStyle={dotStyle ? dotStyle : styles.dotStyle}
+          dotStyles={[
+            styles.dotStyle,
+            {
+              backgroundColor: color,
+              width: size,
+              height: size,
+              borderRadius: size,
+            },
+          ]}
+          padding={padding}
           duration={duration}
         />
         <Dot
           degreeX={1}
           degreeY={1}
-          dotStyle={dotStyle ? dotStyle : styles.dotStyle}
+          dotStyles={[
+            styles.dotStyle,
+            {
+              backgroundColor: color,
+              width: size,
+              height: size,
+              borderRadius: size,
+            },
+          ]}
+          padding={padding}
           duration={duration}
         />
         <Dot
           degreeX={-1}
           degreeY={-1}
-          dotStyle={dotStyle ? dotStyle : styles.dotStyle}
+          dotStyles={[
+            styles.dotStyle,
+            {
+              backgroundColor: color,
+              width: size,
+              height: size,
+              borderRadius: size,
+            },
+          ]}
+          padding={padding}
           duration={duration}
         />
         <Dot
           degreeX={-1}
           degreeY={1}
-          dotStyle={dotStyle ? dotStyle : styles.dotStyle}
+          dotStyles={[
+            styles.dotStyle,
+            {
+              backgroundColor: color,
+              width: size,
+              height: size,
+              borderRadius: size,
+            },
+          ]}
+          padding={padding}
           duration={duration}
         />
       </Animated.View>

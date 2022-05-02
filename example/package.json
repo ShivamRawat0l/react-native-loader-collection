@@ -9,8 +9,9 @@
     "start": "react-native start"
   },
   "dependencies": {
+    "@shopify/react-native-skia": "^0.1.121",
     "react": "16.13.1",
-    "react-native": "0.63.4",
+    "react-native": "0.68.1",
     "react-native-reanimated": "2.4.1",
     "react-native-svg": "^12.3.0"
   },
