@@ -22,13 +22,13 @@ export default function SimpleLoaders() {
         <Text style={styles.text}>Loader 2</Text>
 
         <View style={styles.loaderContainer}>
-          <Loader2 color="#F65158" size={16} padding={20} height={50} />
+          <Loader2 color="#F65158" size={16} padding={20} height={100} />
         </View>
 
         <Text style={styles.text}>Loader 3</Text>
 
         <View style={styles.loaderContainer}>
-          <Loader3 color="#F65158" size={40} padding={6} width={10} />
+          <Loader3 color="#F65158" size={20} padding={6} width={7} />
         </View>
         <Text style={styles.text}>Loader 4</Text>
         <View style={styles.loaderContainer}>
