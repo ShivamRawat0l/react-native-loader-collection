@@ -14,8 +14,14 @@ import {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
+import type { ViewStyle } from 'react-native';
 
-export default function Loader4() {
+type MainProps = {
+  viewStyle?: ViewStyle;
+  color?: string;
+};
+
+const Loader4: React.FC<MainProps> = ({ viewStyle, color = '#F65158' }) => {
   const outerCircle = useValue(0.01);
   const innerCircle = useValue(1);
   const progress = useSharedValue(0.01);
@@ -57,10 +63,10 @@ export default function Loader4() {
   }, [animateOuterCircle, animateInnerCircle]);
 
   return (
-    <Canvas style={[{ flex: 1 }]}>
+    <Canvas style={[{ flex: 1 }, viewStyle]}>
       <Path
         path="M 50 10 A 40 40 0 1 0 50 90 A 40 40 0 1 0 50 10 Z"
-        color="#F65158"
+        color={color}
         style="stroke"
         strokeJoin="bevel"
         strokeWidth={8} // We trim the first and last quarter of the path
@@ -72,7 +78,7 @@ export default function Loader4() {
 
       <Path
         path="M 50 20 A 20 20 0 1 0 50 80 A 20 20 0 1 0 50 20 Z"
-        color="#F65158"
+        color={color}
         style="stroke"
         strokeJoin="bevel"
         strokeWidth={8} // We trim the first and last quarter of the path
@@ -83,4 +89,6 @@ export default function Loader4() {
       />
     </Canvas>
   );
-}
+};
+
+export default Loader4;

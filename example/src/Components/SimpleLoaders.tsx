@@ -28,7 +28,7 @@ export default function SimpleLoaders() {
         <Text style={styles.text}>Loader 3</Text>
 
         <View style={styles.loaderContainer}>
-          <Loader3 />
+          <Loader3 color="#F65158" size={40} padding={6} width={10} />
         </View>
         <Text style={styles.text}>Loader 4</Text>
         <View style={styles.loaderContainer}>
