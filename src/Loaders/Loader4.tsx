@@ -2,6 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 
 import {
   Canvas,
+  Group,
   mix,
   Path,
   useSharedValueEffect,
@@ -14,7 +15,7 @@ import {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
-import type { ViewStyle } from 'react-native';
+import { View, ViewStyle } from 'react-native';
 
 type MainProps = {
   viewStyle?: ViewStyle;
@@ -64,29 +65,54 @@ const Loader4: React.FC<MainProps> = ({ viewStyle, color = '#F65158' }) => {
 
   return (
     <Canvas style={[{ flex: 1 }, viewStyle]}>
-      <Path
-        path="M 50 10 A 40 40 0 1 0 50 90 A 40 40 0 1 0 50 10 Z"
-        color={color}
+      <Group
+        color="lightblue"
         style="stroke"
-        strokeJoin="bevel"
-        strokeWidth={8} // We trim the first and last quarter of the path
-        start={0}
-        strokeCap="round"
-        strokeMiter={10}
-        end={outerCircle}
-      />
-
-      <Path
-        path="M 50 20 A 20 20 0 1 0 50 80 A 20 20 0 1 0 50 20 Z"
-        color={color}
+        strokeWidth={10}
+        transform={[
+          { translateX: 50 },
+          { translateY: 50 },
+          { rotate: 0 },
+          { translateX: -50 },
+          { translateY: -50 },
+        ]}
+      >
+        <Path
+          path="M 50 10 A 40 40 0 1 0 50 90 A 40 40 0 1 0 50 10 Z"
+          color={color}
+          style="stroke"
+          strokeJoin="bevel"
+          strokeWidth={8} // We trim the first and last quarter of the path
+          start={0}
+          strokeCap="round"
+          strokeMiter={10}
+          end={outerCircle}
+        />
+      </Group>
+      <Group
+        color="lightblue"
         style="stroke"
-        strokeJoin="bevel"
-        strokeWidth={8} // We trim the first and last quarter of the path
-        start={0}
-        strokeCap="round"
-        strokeMiter={10}
-        end={innerCircle}
-      />
+        strokeWidth={10}
+        transform={[
+          { translateX: 50 },
+          { translateY: 50 },
+          { rotate: 3.14159 },
+          { translateX: -50 },
+          { translateY: -50 },
+        ]}
+      >
+        <Path
+          path="M 50 20 A 20 20 0 1 0 50 80 A 20 20 0 1 0 50 20 Z"
+          color={color}
+          style="stroke"
+          strokeJoin="bevel"
+          strokeWidth={8} // We trim the first and last quarter of the path
+          start={0}
+          strokeCap="round"
+          strokeMiter={10}
+          end={innerCircle}
+        />
+      </Group>
     </Canvas>
   );
 };
